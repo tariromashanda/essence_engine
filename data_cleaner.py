@@ -16,6 +16,8 @@ with open(output_file, 'a', newline='') as outfile:
         header = next(reader)
 
         for row in reader:
+          if row[4] == '[]':
+              continue
           new_row = [row[0], row[1], row[4], row[6]]
           writer.writerow(new_row)
         
