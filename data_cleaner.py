@@ -16,7 +16,6 @@ def change_name(name):
     pattern_two = "for men"
     pattern_three = "for women"
 
-    
     match_one = re.search(pattern_one, name)
     match_two = re.search(pattern_two, name)
     match_three = re.search(pattern_three, name)
@@ -28,6 +27,36 @@ def change_name(name):
     elif match_three:
         new_name = name = re.sub(pattern_three, "", name)
     return new_name
+
+def remove_stop_words(notes):
+
+    notes = re.sub(r'[^\w\s]', '', notes)
+
+    stop_words = ["top", "notes", "are","middle", "base", "and", "is", "note"]
+    notes = notes.split()
+
+    clean_notes = [word for word in notes if word.lower() not in stop_words]
+    result = " ".join(clean_notes)
+
+
+    pattern_one = ","
+    pattern_two = ";"
+
+    match_one = re.search(pattern_one, result)
+
+    if match_one:
+        result = re.sub(pattern_one, "", result)
+    
+    match_two = re.search(pattern_two, result)
+    
+    if match_two:
+        result = re.sub(pattern_two, "", result)
+    
+
+
+    return result
+
+
 
 def change_notes(notes):
     notes = notes.lower()
@@ -43,23 +72,27 @@ def change_notes(notes):
 
     if match_top_notes:
         top_notes = match_top_notes.group()
-        notes.append(top_notes)
+        top_notes_clean = remove_stop_words(top_notes)
+        notes.append(top_notes_clean)
     else:
         notes.append(0)
 
     if match_middle_notes:
         middle_notes = match_middle_notes.group()
-        notes.append(middle_notes)
+        middle_notes_clean = remove_stop_words(middle_notes)
+        notes.append(middle_notes_clean)
     else:
         notes.append(0)
 
     if match_base_notes:
         base_notes = match_base_notes.group()
-        notes.append(base_notes)
+        base_notes_clean = remove_stop_words(base_notes)
+        notes.append(base_notes_clean)
     else:
         notes.append(0)
     
     return notes
+
 
 header = ["Name", "Gender","Olfactory Family", "Description"]
 
