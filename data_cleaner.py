@@ -51,12 +51,8 @@ def remove_stop_words(notes):
     
     if match_two:
         result = re.sub(pattern_two, "", result)
-    
-
 
     return result
-
-
 
 def change_notes(notes):
     notes = notes.lower()
@@ -93,10 +89,18 @@ def change_notes(notes):
     
     return notes
 
+def change_main_accord(accord):
+
+    c = re.sub(r"['\"\[\],]" , "", accord)
+
+    return c 
+
+
+
 def clean_file(input_file):
 
-    header = ["Name", "Gender","Olfactory Family", "Description"]
-    output_file = 'clean_data.csv'
+    header = ["Name", "Gender","Olfactory Family Notes"]
+    output_file = 'clean_perfume_data.csv'
 
     with open(output_file, 'a', newline='') as outfile:
         with open(input_file, 'r') as infile:
@@ -105,27 +109,33 @@ def clean_file(input_file):
 
             if outfile.tell()== 0:
                 writer.writerow(header)
-                
+
             reader = csv.reader(infile)
             header = next(reader)
 
             for row in reader:
                 if row[4] == '[]':
                     continue
-                row_zero = change_name(row[0])
-                row_one = change_gender(row[1])
-                row_four = change_notes(row[6])
+                name = change_name(row[0])
+                gender = change_gender(row[1])
+                notes = change_notes(row[6])
+                accords = change_main_accord(row[4])
 
-                if 0 in row_four:
+                if 0 in notes:
                     continue
-                new_row = [row_zero, row_one, row[4], row_four]
+                new_row = [name, gender, create_soup(accords, notes)]
                 writer.writerow(new_row)
             
 
     print(f"CSV file {output_file} created")
 
+def create_soup(row_one, row_two):
 
+    row_two =", ".join(row_two).replace(",","")
 
+    return row_one+" "+row_two
+
+clean_file("fra_perfumes.csv")
 
 # with open('fra_perfumes.csv', 'r') as file:
 #     dict_reader = DictReader(file)
