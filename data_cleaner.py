@@ -93,35 +93,36 @@ def change_notes(notes):
     
     return notes
 
+def clean_file(input_file):
 
-header = ["Name", "Gender","Olfactory Family", "Description"]
+    header = ["Name", "Gender","Olfactory Family", "Description"]
+    output_file = 'clean_data.csv'
 
-output_file = 'clean_data.csv'
-input_file = 'fra_perfumes.csv'
+    with open(output_file, 'a', newline='') as outfile:
+        with open(input_file, 'r') as infile:
 
-with open(output_file, 'a', newline='') as outfile:
-    with open(input_file, 'r') as infile:
+            writer = csv.writer(outfile)
 
-        writer = csv.writer(outfile)
-        if outfile.tell()== 0:
-            writer.writerow(header)
-        reader = csv.reader(infile)
-        header = next(reader)
+            if outfile.tell()== 0:
+                writer.writerow(header)
+                
+            reader = csv.reader(infile)
+            header = next(reader)
 
-        for row in reader:
-            if row[4] == '[]':
-               continue
-            row_zero = change_name(row[0])
-            row_one = change_gender(row[1])
-            row_four = change_notes(row[6])
+            for row in reader:
+                if row[4] == '[]':
+                    continue
+                row_zero = change_name(row[0])
+                row_one = change_gender(row[1])
+                row_four = change_notes(row[6])
 
-            if 0 in row_four:
-                continue
-            new_row = [row_zero, row_one, row[4], row_four]
-            writer.writerow(new_row)
-        
+                if 0 in row_four:
+                    continue
+                new_row = [row_zero, row_one, row[4], row_four]
+                writer.writerow(new_row)
+            
 
-print(f"CSV file {output_file} created")
+    print(f"CSV file {output_file} created")
 
 
 
