@@ -91,10 +91,9 @@ def change_notes(notes):
 
 def change_main_accord(accord):
 
-    c = re.sub(r"['\"\[\],]" , "", accord)
+    accord = re.sub(r"['\"\[\],]" , "", accord)
 
-    return c 
-
+    return accord
 
 
 def clean_file(input_file):
@@ -136,11 +135,3 @@ def create_soup(row_one, row_two):
     return row_one+" "+row_two
 
 clean_file("fra_perfumes.csv")
-
-# with open('fra_perfumes.csv', 'r') as file:
-#     dict_reader = DictReader(file)
-    
-#     list_of_dicts = list(dict_reader)
-
-# print(list_of_dicts[0])
-    
