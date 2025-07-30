@@ -137,14 +137,20 @@ def create_soup(row_one, row_two):
 
     return row_one+" "+row_two
 
-clean_file("fra_perfumes.csv")
+#clean_file("fra_perfumes.csv")
 
+def create_dictfile():
 
-# data = []
+    data = []
+    output_file = 'clean_perfume_data.csv'
 
-# with open("clean_perfume_data.csv", 'r', newline = '') as file:
-#     reader = DictReader(file)
+    with open(output_file, 'a', newline='') as outfile:
+        with open("clean_perfume_data.csv", 'r', newline = '') as file:
+            reader = DictReader(file)
 
-#     for row in reader:
-#         data.append(row)
-#     print(data)
+            for row in reader:
+                data.append(row)
+
+            outfile.write(data)
+
+create_dictfile()
