@@ -14,9 +14,6 @@ def build_vocab(data):
     
     return vocab
 
-vocab = build_vocab(data)
-
-print(build_vocab(data))
 
 #counting the value of each word in a sentence
 def freq_count(data):
@@ -30,16 +27,18 @@ def freq_count(data):
     return data_count
 
 
-print(freq_count(data))
+
+def build_sparse_matrix(vocab,freq):
+    vector = []
+    for word in vocab:
+
+        vector.append((0, vocab.get(word), freq.get(word)))
+    
+    return vector
+
+    
+vocab = build_vocab(data)
 count = freq_count(data)
 
-vector = []
-for word in vocab:
-    
+print(build_sparse_matrix(vocab, count))
 
-    vocab.append((0, vocab.get(word), count.get(word)))
-
-
-def build_sparse_matrix():
-    pass
-    
