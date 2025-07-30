@@ -98,13 +98,15 @@ def change_main_accord(accord):
 
 def clean_file(input_file):
 
-    header = ["Name", "Gender","Olfactory Family Notes"]
+    header = ["Index", "Name", "Gender","Olfactory Family Notes"]
     output_file = 'clean_perfume_data.csv'
 
     with open(output_file, 'a', newline='') as outfile:
         with open(input_file, 'r') as infile:
 
             writer = csv.writer(outfile)
+
+            index = 0
 
             if outfile.tell()== 0:
                 writer.writerow(header)
@@ -119,10 +121,11 @@ def clean_file(input_file):
                 gender = change_gender(row[1])
                 notes = change_notes(row[6])
                 accords = change_main_accord(row[4])
+                index +=1
 
                 if 0 in notes:
                     continue
-                new_row = [name, gender, create_soup(accords, notes)]
+                new_row = [index, name, gender, create_soup(accords, notes)]
                 writer.writerow(new_row)
             
 
@@ -135,3 +138,13 @@ def create_soup(row_one, row_two):
     return row_one+" "+row_two
 
 clean_file("fra_perfumes.csv")
+
+
+# data = []
+
+# with open("clean_perfume_data.csv", 'r', newline = '') as file:
+#     reader = DictReader(file)
+
+#     for row in reader:
+#         data.append(row)
+#     print(data)
