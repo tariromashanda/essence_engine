@@ -138,27 +138,13 @@ def create_soup(row_one, row_two):
 
 #clean_file("fra_perfumes.csv")
 
-# def create_dictfile():
-
-#     data = []
-#     input_file = 'clean_perfume_data.csv'
-
-#     with open(input_file, 'a', newline='') as outfile:
-#         with open("clean_perfume_data.csv", 'r', newline = '') as file:
-#             reader = DictReader(file)
-
-#             for row in reader:
-#                 data.append(row)
-
-#             outfile.write(data)
-
-# create_dictfile()
-
 def get_perfume_index(file, name):
 
-    with open('data.csv', newline='') as file:
+    with open(file, newline = '') as file:
         reader = csv.reader(file)
         next(reader, None)
         for row in reader:
             if row[1] == name:
                 return row[0]
+
+print(get_perfume_index("clean_perfume_data.csv", "Infusion d'Ylang Prada" ))
