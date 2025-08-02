@@ -1,5 +1,4 @@
 import math
-import csv
 
 def inner_product(x,y):
 

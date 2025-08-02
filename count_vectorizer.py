@@ -26,8 +26,6 @@ def freq_count(data):
     
     return data_count
 
-
-
 def build_sparse_matrix(vocab,freq):
     vector = []
     for word in vocab:
@@ -37,8 +35,14 @@ def build_sparse_matrix(vocab,freq):
     return vector
 
     
-vocab = build_vocab(data)
-count = freq_count(data)
+def build_bag_of_words(perfume_dict):
 
-print(build_sparse_matrix(vocab, count))
+    olfactory_notes = ""
 
+    for perfume in perfume_dict:
+        olfactory_notes += perfume.get('Olfactory Family Notes')
+    
+    return olfactory_notes
+
+
+    

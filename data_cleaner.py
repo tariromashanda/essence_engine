@@ -1,5 +1,5 @@
-import csv
 import re
+import csv
 
 def change_gender(gender):
     gender = gender.split(" ")
@@ -136,22 +136,12 @@ def create_soup(row_one, row_two):
 
     return row_one+" "+row_two
 
-# def get_perfume_index(file, name):
-
-#     with open(file, newline = '') as file:
-#         reader = csv.reader(file)
-#         next(reader, None)
-#         for row in reader:
-#             if row[1] == name:
-#                 return row[0]
-
-
 def csv_to_list_of_dicts(filepath):
     data = []
 
     with open(filepath, 'r', newline='') as file:
         reader = csv.reader(file)
-        next(reader, None)  # skip header row
+        next(reader, None) 
         for row in reader:
             row_dict = {
                 'Index': row[0],
@@ -169,4 +159,5 @@ def build_reverse_mapping(perfume_list):
         mapping[perfume['Name']] = i
     return mapping
 
-dict1 = csv_to_list_of_dicts("clean_perfume_data.csv")
+
+
