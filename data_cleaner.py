@@ -136,14 +136,14 @@ def create_soup(row_one, row_two):
 
     return row_one+" "+row_two
 
-def get_perfume_index(file, name):
+# def get_perfume_index(file, name):
 
-    with open(file, newline = '') as file:
-        reader = csv.reader(file)
-        next(reader, None)
-        for row in reader:
-            if row[1] == name:
-                return row[0]
+#     with open(file, newline = '') as file:
+#         reader = csv.reader(file)
+#         next(reader, None)
+#         for row in reader:
+#             if row[1] == name:
+#                 return row[0]
 
 
 def csv_to_list_of_dicts(filepath):
@@ -163,3 +163,10 @@ def csv_to_list_of_dicts(filepath):
 
     return data
 
+def build_reverse_mapping(perfume_list):
+    mapping = {}
+    for i, perfume in enumerate(perfume_list):
+        mapping[perfume['Name']] = i
+    return mapping
+
+dict1 = csv_to_list_of_dicts("clean_perfume_data.csv")
