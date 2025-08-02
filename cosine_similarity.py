@@ -1,4 +1,5 @@
 import math
+import csv
 
 def inner_product(x,y):
 
@@ -22,4 +23,6 @@ def magnitude(num):
 def cosine_similarity(x,y):
 
     return round(inner_product(x,y)/(magnitude(x)*magnitude(y)),2)
+
+
 

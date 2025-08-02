@@ -1,2 +1,6 @@
-def get_reccommendation(perfume_name, cosine_score):
-    pass
+from data_cleaner import *
+from cosine_similarity import *
+
+def get_perfume_recommendation(perfume_name, file):
+
+    

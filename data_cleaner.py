@@ -136,8 +136,6 @@ def create_soup(row_one, row_two):
 
     return row_one+" "+row_two
 
-#clean_file("fra_perfumes.csv")
-
 def get_perfume_index(file, name):
 
     with open(file, newline = '') as file:
@@ -147,4 +145,21 @@ def get_perfume_index(file, name):
             if row[1] == name:
                 return row[0]
 
-print(get_perfume_index("clean_perfume_data.csv", "Infusion d'Ylang Prada" ))
+
+def csv_to_list_of_dicts(filepath):
+    data = []
+
+    with open(filepath, 'r', newline='') as file:
+        reader = csv.reader(file)
+        next(reader, None)  # skip header row
+        for row in reader:
+            row_dict = {
+                'Index': row[0],
+                'Name': row[1],
+                'Gender': row[2],
+                'Olfactory Family Notes': row[3]
+            }
+            data.append(row_dict)
+
+    return data
+
