@@ -1,6 +1,5 @@
 data = "citrus musky woody aromatic warm spicy lavender mossy fruity earthy white floral lemon mandarin orange cardamom pink pepper lavender green apple orange blossom rose musk moss cedar patchouli"
-#data = "doubt thou the stars are fire doubt that the sun doth move doubt truth to be a liar but never doubt i love"
-#gets the index of the word
+
 def build_vocab(data):
     data = data.split(" ")
     unique_words = set()
@@ -15,7 +14,6 @@ def build_vocab(data):
     return vocab
 
 
-#counting the value of each word in a sentence
 def freq_count(data):
 
     data = data.split(' ')
@@ -43,10 +41,3 @@ def build_bag_of_words(perfume_dict):
         olfactory_notes += perfume.get('Olfactory Family Notes')
     
     return olfactory_notes
-
-
-vocab = build_vocab(data)
-
-freq = freq_count(data)
-
-    
