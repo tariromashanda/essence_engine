@@ -1,7 +1,21 @@
-from data_cleaner import csv_to_list_of_dicts
-from count_vectorizer import build_vocab, freq_count
+from cosine_similarity import cosine_similarity
 
-perfume_list = csv_to_list_of_dicts("clean_perfume_data.csv")
 
-all_notes = " ".join([p['Olfactory Family Notes'] for p in perfume_list])
-voab = build_vocab(all_notes)
+
+def recommend_perfumes(target_name, perfume_list, perfume_vetcors, top_n = 5):
+    target_index = next((i for i, p in enumerate(perfume_list) if p['Name'] == target_name), None)
+    if target_index is None:
+        return []
+    
+    target_vector = perfume_vetcors[target_index]
+    similarities = []
+
+    for i, vec in enumerate(perfume_vetcors):
+        if i == target_index:
+            continue
+        sim = cosine_similarity(target_vector, vec)
+        similarities.append((perfume_list[i]['Name'], sim))
+    
+    similarities.sort(key = lambda x: x[1], reverse = True)
+    return similarities[:top_n]
+

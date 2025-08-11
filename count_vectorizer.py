@@ -1,4 +1,3 @@
-data = "citrus musky woody aromatic warm spicy lavender mossy fruity earthy white floral lemon mandarin orange cardamom pink pepper lavender green apple orange blossom rose musk moss cedar patchouli"
 
 def build_vocab(data):
     data = data.split(" ")
@@ -24,20 +23,10 @@ def freq_count(data):
     
     return data_count
 
-def build_sparse_matrix(vocab,freq):
+
+def vectorize_perfume(notes_string, vocab):
+    freq = freq_count(notes_string)
     vector = []
-    for word in vocab:
-
-        vector.append((0, vocab.get(word), freq.get(word)))
-    
+    for word in sorted(vocab.keys()):
+        vector.append(freq.get(word,0))
     return vector
-
-    
-def build_bag_of_words(perfume_dict):
-
-    olfactory_notes = ""
-
-    for perfume in perfume_dict:
-        olfactory_notes += perfume.get('Olfactory Family Notes')
-    
-    return olfactory_notes

@@ -153,11 +153,5 @@ def csv_to_list_of_dicts(filepath):
 
     return data
 
-def build_reverse_mapping(perfume_list):
-    mapping = {}
-    for i, perfume in enumerate(perfume_list):
-        mapping[perfume['Name']] = i
-    return mapping
-
 
 
