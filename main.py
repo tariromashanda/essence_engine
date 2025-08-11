@@ -19,6 +19,7 @@ def main():
         perfume_vectors.append(vectorize_perfume(p['Olfactory Family Notes'], vocab))
     
     recs = recommend_perfumes(perfume_name, perfume_list, perfume_vectors, top_n=3)
+    
     for name, score in recs:
         print(f"{name}: {score}")
 
