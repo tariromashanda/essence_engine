@@ -45,4 +45,8 @@ def build_bag_of_words(perfume_dict):
     return olfactory_notes
 
 
+vocab = build_vocab(data)
+
+freq = freq_count(data)
+
     
